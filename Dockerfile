@@ -7,13 +7,15 @@
 # Pull base image.
 FROM dockerfile/java:oracle-java7
 
+ENV ES_VERSION 1.4.2
+
 # Install ElasticSearch.
 RUN \
   cd /tmp && \
-  wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.0.tar.gz && \
-  tar xvzf elasticsearch-1.4.0.tar.gz && \
-  rm -f elasticsearch-1.4.0.tar.gz && \
-  mv /tmp/elasticsearch-1.4.0 /elasticsearch
+  wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-$ES_VERSION.tar.gz && \
+  tar xvzf elasticsearch-$ES_VERSION.tar.gz && \
+  rm -f elasticsearch-$ES_VERSION.tar.gz && \
+  mv /tmp/elasticsearch-$ES_VERSION /elasticsearch
 
 # http://192.168.59.103:9200/_plugin/marvel/sense/index.html
 RUN /elasticsearch/bin/plugin -i elasticsearch/marvel/latest
